@@ -18,21 +18,6 @@ exports.getUser = (req, res) => {
   return res.json(req.profile);
 };
 
-exports.updateUser = (req, res) => {
-  User.findByIdAndUpdate(
-    { _id: req.profile._id },
-    { $set: req.body },
-    { new: true }
-  ).exec((err, user) => {
-    if (err) {
-      res.json({
-        error: "user cannot be updated",
-      });
-    }
-    res.json(user);
-  });
-};
-
 exports.getUsers = (req, res) => {
   User.find().exec((err, users) => {
     if (err || !users) {
